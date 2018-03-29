@@ -6,7 +6,7 @@ namespace JollyJackpotLand
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello everyone!");
+            Console.WriteLine("Hello worldo people!");
         }
     }
 }
