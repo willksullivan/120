@@ -6,7 +6,17 @@ namespace Lab3Table
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Table!");
+            for(int i = 1; i <5; i++)
+            {
+                Console.Write(i + " ");
+                for (int j = 0; j <= 9; j++)
+                {
+                    Console.Write(i*j + " ");
+                }
+                Console.WriteLine("");
+            }
+            Console.ReadLine();
+
         }
     }
 }
