@@ -6,15 +6,7 @@ namespace JollyJackpotLand
     {
         static void Main(string[] args)
         {
-            /*
-             * begin with 500 gill
-             * continue to play until user hits 1000
-             * MAIN MENU
-             * slot machine
-             * black jack
-             *roulette wheel
-             * save
-             */
+
             int gil = 0;
             do
             {
