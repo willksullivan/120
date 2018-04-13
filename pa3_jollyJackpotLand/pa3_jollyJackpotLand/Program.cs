@@ -7,77 +7,58 @@ namespace pa3_jollyJackpotLand
     {
         static void Main(string[] args)
         {
-            User currentUser = loginPrompt();
+            int gil = 50;
+            gil = login(gil);
 
+            
         }
 
-        public static User loginPrompt()
+        public static int login(int gil)
         {
-            User currentUser = new User("", "", 0);
-            int decision;
+            int playerStatus = 0;
+            bool fileEmpty = false;
 
             Console.WriteLine("Welcome to Jolly Jackpot Land");
+            playerStatus = playerDecision();
 
-            do
+            //New Player
+            if (playerStatus == 1)
             {
-                Console.WriteLine("1. New Player 2. Existing user");
-                decision = int.Parse(Console.ReadLine());
-            } while (decision != 1 && decision != 2);
-
-            //New Player creation
-            if (decision == 1)
-            {
-                currentUser = newUser();
-                saveNewUser(currentUser);
+                gil = 500;
+                saveGil(gil);
             }
+            //current player
             else
             {
-                //currentUser = existingUser();
-
+                gil = LoadGil();
             }
-
-
-
-
-            return currentUser;
+            
+            return gil;
         }
 
-        public static User newUser()
+        public static int playerDecision()
         {
-            string currentUserName, currentPassword;
-            User currentUser;
-
-            Console.WriteLine("Please enter your username");
-            currentUserName = Console.ReadLine();
-
-            Console.WriteLine("Please enter your password");
-            currentPassword = Console.ReadLine();
-
-            currentUser = new User(currentUserName, currentPassword, 500);
-
-            return currentUser;
-        }
-
-        //public static User existingUser()
-        //{
-        //    User existingUser;
-        //    return existingUser;
-        //}
-
-        public static void saveNewUser(User currentuser)
-        {
-
-            string path = @"C:\Users\willk\Documents\GitHub\120\pa3_jollyJackpotLand\players.txt";
-
-            // This text is always added, making the file longer over time
-            // if it is not deleted.
-            using (StreamWriter sw = File.AppendText(path))
+            int decision;
+            do
             {
-                sw.WriteLine(User.UserName);
-                sw.WriteLine(User.Password);
-                sw.WriteLine(User.Gil);
-                sw.WriteLine();
-            }
+                Console.WriteLine("1. New Game 2. Load Game");
+                decision = int.Parse(Console.ReadLine());
+            } while (decision != 1 && decision != 2);
+            return decision;
         }
+        public static int LoadGil()
+        {
+            int gil;
+
+            gil = int.Parse(System.IO.File.ReadAllText(@"C:\Users\WKS Desktop\Documents\GitHub\120\pa3_jollyJackpotLand\players.txt"));
+            return gil;
+        }
+        public static void saveGil(int gil)
+        {
+            System.IO.File.WriteAllText(@"C:\Users\WKS Desktop\Documents\GitHub\120\pa3_jollyJackpotLand\players.txt", gil.ToString());
+        }
+
+
+
     }
 }
