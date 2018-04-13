@@ -67,7 +67,6 @@ namespace pa3_jollyJackpotLand
         public static void saveNewUser(User currentuser)
         {
 
-            string test = User.UserName;
             string path = @"C:\Users\willk\Documents\GitHub\120\pa3_jollyJackpotLand\players.txt";
 
             // This text is always added, making the file longer over time
@@ -77,6 +76,7 @@ namespace pa3_jollyJackpotLand
                 sw.WriteLine(User.UserName);
                 sw.WriteLine(User.Password);
                 sw.WriteLine(User.Gil);
+                sw.WriteLine();
             }
         }
     }
