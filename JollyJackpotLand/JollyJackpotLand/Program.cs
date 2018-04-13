@@ -7,7 +7,10 @@ namespace JollyJackpotLand
         static void Main(string[] args)
         {
 
-            int gil = 0;
+            int gil = 500;
+
+            string[] lines = { "sully", "password", "0" };
+            System.IO.File.WriteAllLines(@"C:\Users\Public\TestFolder\WriteLines.txt", lines);
             do
             {
                 //login
