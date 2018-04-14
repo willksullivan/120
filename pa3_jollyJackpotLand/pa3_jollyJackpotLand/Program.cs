@@ -9,7 +9,6 @@ namespace pa3_jollyJackpotLand
         {
             int gil = 500;
 
-
             gil = login(gil);
             displayGil(gil);
             do
@@ -63,14 +62,16 @@ namespace pa3_jollyJackpotLand
         {
             System.IO.File.WriteAllText(@"C:\Users\WKS Desktop\Documents\GitHub\120\pa3_jollyJackpotLand\players.txt", gil.ToString());
         }
+
         public static void mainMenu(int gil)
         {
             int menuDecision;
+            bool again = true;
             do
             {
                 Console.WriteLine("1.Slot Machine 2.Dice Toss 3.Roulette Wheel 4.Restart Game 5.Save and Exit");
                 menuDecision = int.Parse(Console.ReadLine());
-            } while (menuDecision != 1 && menuDecision != 2 && menuDecision != 3 && menuDecision != 4 && menuDecision != 5);
+            } while ((menuDecision != 1 && menuDecision != 2 && menuDecision != 3 && menuDecision != 4 && menuDecision != 5) && again == true);
 
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!check gil
@@ -218,7 +219,6 @@ namespace pa3_jollyJackpotLand
 
             return gil;
         }
-
         public static int diceToss(int gil)
         {
             int wager, gameType, roll, range, amount;
@@ -307,18 +307,148 @@ namespace pa3_jollyJackpotLand
             } while (again == true);
             saveGil(gil);
             return gil;
-        }
-
+        }    
         public static int rouletteWheel(int gil)
         {
+            int wager, wheel, decision;
+            Random rnd1 = new Random();
+            bool again = true;
+            
+            do
+            {
+                gil = LoadGil();
+                displayGil(gil);
+                wager = wagerAmount(gil);
+
+                do
+                {
+                    Console.WriteLine("This is the roulette wheel, you will decide between red or black. If you guess the correct color you win double.");
+                    Console.WriteLine("1.black 2.Red");
+                    decision = int.Parse(Console.ReadLine());
+                } while (decision != 1 && decision != 2);
+
+                wheel = rnd1.Next(1, 36);
+
+                if (wheel >= 1 && wheel <= 10)
+                {
+                    //number is even and decision is black
+                    if (wheel % 2 == 0 && decision == 1)
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+                    }
+                    else if (wheel % 2 == 0 && decision == 2)
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                    else if (wheel % 2 != 0 && decision == 1)
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+                    }
+                }
+                else if (wheel >= 11 && wheel <= 18)
+                {
+                    if (wheel % 2 == 0 && decision == 1)
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                    else if (wheel % 2 == 0 && decision == 2)
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+                    }
+                    else if (wheel % 2 != 0 && decision == 1)
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                }
+                else if (wheel >= 19 && wheel <= 28)
+                {
+                    if (wheel % 2 == 0 && decision == 1)
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+
+                    }
+                    else if (wheel % 2 == 0 && decision == 2)
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                    else if (wheel % 2 != 0 && decision == 1)
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+                    }
+                }
+                else if (wheel >= 29 && wheel <= 36)
+                {
+                    if (wheel % 2 == 0 && decision == 1)
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                    else if (wheel % 2 == 0 && decision == 2)
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+                    }
+                    else if (wheel % 2 != 0 && decision == 1)
+                    {
+                        Console.WriteLine("You win!");
+                        gil = gil + (wager * 2);
+                        saveGil(gil);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You lose!");
+                        gil -= wager;
+                        saveGil(gil);
+                    }
+                }
+                again = playAgain();
+                saveGil(gil);
+            } while (again == true);
+                        
             return gil;
         }
-
         public static void displayGil(int gil)
         {
             Console.WriteLine("Your current Gil amount is " + gil);
         }
-
         public static int wagerAmount(int gil)
         {
             int wager;
@@ -330,7 +460,6 @@ namespace pa3_jollyJackpotLand
 
             return wager;
         }
-
         public static bool playAgain()
         {
             bool again = true;
