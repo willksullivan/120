@@ -13,7 +13,7 @@ namespace pa5_movie
 
         public Movie(int _movieID, string _movieTitle, string _genre, bool _inStock)
         {
-            this.movieID++;
+            this.movieID = _movieID;
             this.movieTitle = _movieTitle;
             this.genre = _genre;
             this.inStock = _inStock;
