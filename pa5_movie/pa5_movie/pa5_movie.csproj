@@ -6,12 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="manager.cs" />
     <Compile Remove="Transactions.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="manager.cs" />
     <None Include="Transactions.cs" />
   </ItemGroup>
 
