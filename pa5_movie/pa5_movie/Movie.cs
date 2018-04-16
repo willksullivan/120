@@ -27,7 +27,8 @@ namespace pa5_movie
             List<Movie> movieList = new List<Movie>();
 
             // Read the file and display it line by line.
-            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\WKS Desktop\Documents\GitHub\120\pa5_movie\movies.txt");
+            //System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\WKS Desktop\Documents\GitHub\120\pa5_movie\movies.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\willk\Documents\GitHub\120\pa5_movie\movies.txt");
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
