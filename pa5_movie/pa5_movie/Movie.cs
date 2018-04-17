@@ -43,7 +43,7 @@ namespace pa5_movie
 
         public static void saveMovies(List<Movie> myList)
         {
-            using (TextWriter tw = new StreamWriter(@"C:\Users\WKS Desktop\Documents\GitHub\120\pa5_movie\movies.txt"))
+            using (TextWriter tw = new StreamWriter((@"C:\Users\willk\Documents\GitHub\120\pa5_movie\movies.txt")))
             {
                 foreach (var movie in myList)
                 {
@@ -82,14 +82,15 @@ namespace pa5_movie
             do
             {
                 Console.WriteLine("\nPlease press enter the ID of the movie that you would like to delete");
-                Int32.TryParse(Console.ReadLine(),out decision);               
-            } while (decision < 0 || decision > list.Count);
+
+            } while (Int32.TryParse(Console.ReadLine(), out decision) && (decision < 0 || decision > list.Count));
 
             //remove movie
             foreach (Movie m in list)
             {
-                if(m.movieID == decision)
+                if (m.movieID == decision)
                 {
+                    Console.WriteLine("Deleted: " + m.movieTitle);
                     list.Remove(m);
                     break;
                 }
@@ -163,6 +164,39 @@ namespace pa5_movie
         {
             movie.movieID = movieList[movieList.Count - 1].movieID + 1;
             return movie.movieID;
+        }
+
+        public static void viewMoviesToRent(List<Movie> myList)
+        {
+            foreach (Movie m in myList)
+            {
+                if (m.inStock == true)
+                {
+                    Console.WriteLine("{0} {1}", m.movieID, m.movieTitle);
+                }
+            }
+        }
+
+        public static int rentMovie(List<Movie> myList)
+        {
+            //Movie movie = null;
+            int decision;
+
+            viewMoviesToRent(myList);
+
+
+            Console.WriteLine("Please enter the ID of the movie you would like to rent");
+            decision = int.Parse(Console.ReadLine());
+
+            foreach (Movie m in myList)
+            {
+                if (decision == m.movieID)
+                {
+                    m.inStock = false;
+                    break;
+                }
+            }
+            return decision;
         }
     }
 }

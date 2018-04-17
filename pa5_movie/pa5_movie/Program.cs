@@ -10,15 +10,20 @@ namespace pa5_movie
         {
             List<Movie> movieList = new List<Movie>();
 
-            //delete movie
-              //error check if a non int is entered
-
-
-
-
             movieList = Movie.loadMovies();
 
-            movieList = Movie.deleteMovie(movieList);
+            Movie.viewMoviesToRent(movieList);
+            int rentedID = Movie.rentMovie(movieList);
+
+
+
+
+
+
+            Console.ReadLine();
+
+
+
             Console.ReadLine();
             
         }
