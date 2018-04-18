@@ -5,12 +5,4 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Transactions.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Transactions.cs" />
-  </ItemGroup>
-
 </Project>

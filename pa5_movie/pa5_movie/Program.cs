@@ -11,20 +11,28 @@ namespace pa5_movie
             List<Movie> movieList = new List<Movie>();
             List<Transaction> transactionList = new List<Transaction>();
 
+            Console.WriteLine("What is your email?");
+            string userEmail = Console.ReadLine();
             movieList = Movie.loadMovies();
+            transactionList = Transaction.loadTransaction();
 
-            int id = Movie.rentMovie(movieList);
-            Transaction.makeTransaction(id);
+
+            Movie.returnMovie(movieList, userEmail, transactionList); ;
             
+            
+            /*
+            //rent movie and make transaction
+            int id = Movie.rentMovie(movieList);
+            Transaction.makeTransaction(id,userEmail);
+            
+
+           */
+
+
+
+            Console.ReadLine();
 
            
-
-
-
-            Console.ReadLine();
-
-            Movie.viewMoviesToRent(movieList);
-            int rentedID = Movie.rentMovie(movieList);
             
             
 
@@ -33,11 +41,6 @@ namespace pa5_movie
 
 
 
-            Console.ReadLine();
-
-
-
-            Console.ReadLine();
             
         }
     }

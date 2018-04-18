@@ -7,8 +7,8 @@ namespace pa5_movie
 {
     class Movie
     {
-        public static string path = @"C:\Users\WKS Desktop\Documents\GitHub\120\pa5_movie\movies.txt";
-        //private string path = @"C:\Users\willk\Documents\GitHub\120\pa5_movie\movies.txt";
+        //public static string path = @"C:\Users\WKS Desktop\Documents\GitHub\120\pa5_movie\movies.txt";
+        public static string path = @"C:\Users\willk\Documents\GitHub\120\pa5_movie\movies.txt";
 
 
         public int movieID { get; set; }
@@ -201,6 +201,45 @@ namespace pa5_movie
                 }
             }
             return decision;
+        }
+
+        public static List<Movie> returnMovie(List<Movie> movieList, string email, List<Transaction> transactionList)
+        {
+            Transaction.viewRentedMovies(email, transactionList, movieList);
+            Console.WriteLine("What is the ID of the movie you would like to return");
+            int movieID = int.Parse(Console.ReadLine());
+
+            foreach(Movie m in movieList)
+            {
+                if((movieID == m.movieID) && m.inStock == false)
+                {
+                    m.inStock =true;
+                    saveMovies(movieList);
+                    Transaction.returnTransaction(movieID, email);
+                }
+            }
+
+            return movieList;
+            
+            
+            
+            
+            
+            //Transaction.viewRentedMovies(email,transactionList,movieList);
+            //Console.WriteLine("enter the ID of the movie you you like to return");
+            ////int ID = int.Parse(Console.ReadLine());
+
+            //foreach (Movie m in movieList)
+            //{
+            //    if(movieID == m.movieID)
+            //    {
+            //        m.inStock = true;
+            //        Transaction.returnTransaction(m.movieID, email, transactionList);
+            //    }
+            //}
+
+            //saveMovies(movieList);
+            //return movieList;
         }
     }
 }
