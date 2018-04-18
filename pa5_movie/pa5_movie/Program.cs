@@ -9,11 +9,24 @@ namespace pa5_movie
         static void Main(string[] args)
         {
             List<Movie> movieList = new List<Movie>();
+            List<Transaction> transactionList = new List<Transaction>();
 
             movieList = Movie.loadMovies();
 
+            int id = Movie.rentMovie(movieList);
+            Transaction.makeTransaction(id);
+            
+
+           
+
+
+
+            Console.ReadLine();
+
             Movie.viewMoviesToRent(movieList);
             int rentedID = Movie.rentMovie(movieList);
+            
+            
 
 
 
@@ -28,4 +41,6 @@ namespace pa5_movie
             
         }
     }
+
+
 }

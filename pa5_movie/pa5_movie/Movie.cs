@@ -7,6 +7,10 @@ namespace pa5_movie
 {
     class Movie
     {
+        public static string path = @"C:\Users\WKS Desktop\Documents\GitHub\120\pa5_movie\movies.txt";
+        //private string path = @"C:\Users\willk\Documents\GitHub\120\pa5_movie\movies.txt";
+
+
         public int movieID { get; set; }
         public string movieTitle { get; set; }
         public string genre { get; set; }
@@ -27,8 +31,7 @@ namespace pa5_movie
             List<Movie> movieList = new List<Movie>();
 
             // Read the file and display it line by line.
-            //System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\WKS Desktop\Documents\GitHub\120\pa5_movie\movies.txt");
-            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\willk\Documents\GitHub\120\pa5_movie\movies.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(path);
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
@@ -43,7 +46,7 @@ namespace pa5_movie
 
         public static void saveMovies(List<Movie> myList)
         {
-            using (TextWriter tw = new StreamWriter((@"C:\Users\willk\Documents\GitHub\120\pa5_movie\movies.txt")))
+            using (TextWriter tw = new StreamWriter((path)))
             {
                 foreach (var movie in myList)
                 {
@@ -193,6 +196,7 @@ namespace pa5_movie
                 if (decision == m.movieID)
                 {
                     m.inStock = false;
+                    saveMovies(myList);
                     break;
                 }
             }
